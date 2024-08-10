@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <style>
+        :root {
+            --battery-fill-width: 42px;
+        }
+
+        @keyframes charge {
+            0% {
+                width: var(--battery-fill-width);
+            }
+
+            100% {
+                width: 84px;
+            }
+        }
+
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .battery-fill {
+            animation: charge 2s infinite;
+        }
+
+        .battery-level {
+            width: var(--battery-fill-width);
+        }
+
+        .battery-container {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+        }
+
+        .battery-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            z-index: 10;
+            color: white;
+            mix-blend-mode: difference;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="battery-container">
+        <!-- Pilin ortasında doluluk yüzdesi -->
+        <div class="battery-text">50%</div>
+
+        <!-- Pil SVG -->
+        <svg width="100" height="50" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pil Gövdesi -->
+            <rect x="2" y="10" width="90" height="30" rx="5" ry="5" stroke="white" fill="none" stroke-width="2" />
+            <!-- Pilin Ucu -->
+            <rect x="92" y="18" width="6" height="14" rx="2" ry="2" stroke="white" fill="none" stroke-width="2" />
+            <!-- Pil Dolum Animasyonu (Siyah Kısım) -->
+            <rect class="battery-fill" x="5" y="13" width="0" height="24" rx="3" ry="3" fill="rgba(255, 255, 255, 0.75)" />
+            <!-- Pil Doluluk Oranı (Beyaz Kısım) -->
+            <rect class="battery-level" x="5" y="13" width="84" height="24" rx="3" ry="3" fill="white" />
+        </svg>
+    </div>
+</body>
+
+</html>
